@@ -85,19 +85,19 @@ struct ButtonView: View {
     var body: some View {
         
         Button(action: {
-            print("Pressed!")
             
             if modelAction.lastOperation == Operation.zero{
                 
-                if content.label == "."  {
+                if operation != .number {
+                    result = "0"
+                } else if content.label == "."  {
                     result = "0."
                 } else {
                     result = content.label
                     modelAction.setValue(result)
                     modelAction.againOperate()
                 }
-                
-                print("Pressed!-3 operation: \(content.label) valueAction: \(result) tmpValueAction: \(modelAction.result)")
+            
             }
             // presiona A/C -> se reseteea
             else if operation == .ac {
@@ -132,8 +132,6 @@ struct ButtonView: View {
                     modelAction.setOperation(operation)
                 }
                 
-                
-                print("Pressed!-1 operation: \(content.label) valueAction: \(result) tmpValueAction: \(modelAction.result)")
             }
             // presiona numero y anterior es operacion -> debe mostrar numero, y no realizar operacion
             else if operation == Operation.number && modelAction.lastOperation != Operation.number{
@@ -145,8 +143,7 @@ struct ButtonView: View {
                     result = content.label
                     modelAction.setValue(result)
                 }
-                
-                print("Pressed!-4 operation: \(content.label) valueAction: \(result) tmpValueAction: \(modelAction.result)")
+            
             }
             // presiona numero y anterior es numero -> se concatena y solo actualiza ultimo numero, no debe hacer operacion
             
@@ -164,8 +161,7 @@ struct ButtonView: View {
                         modelAction.valueB = result
                     }
                 }
-                                
-                print("Pressed!-2 operation: \(content.label) valueAction: \(result) tmpValueAction: \(modelAction.result)")
+                            
             }
             
             
