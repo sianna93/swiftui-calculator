@@ -89,6 +89,9 @@ struct ButtonView: View {
             
             if modelAction.lastOperation == Operation.zero{
                 
+                if operation != .number{
+                    
+                }
                 if content.label == "."  {
                     result = "0."
                 } else {
@@ -106,6 +109,7 @@ struct ButtonView: View {
             }
             // presiona operacion y anterior es numero -> debe mostrar resultado
             else if operation != Operation.number && modelAction.lastOperation == Operation.number{
+                
                 
                 // // presiona coma y anterior es numero -> se concatena
                 if operation == .comma {
@@ -126,6 +130,9 @@ struct ButtonView: View {
                     }
                     
                 } else {
+                    
+                    //Change modifiers
+                    //content.keepPress = true
 
                     modelAction.againOperate()
                     result = modelAction.result
@@ -253,22 +260,24 @@ struct ContentButtonView: View {
     var backgroundColor: Color = Color(.gray)
     var isCircle: Bool = true
     
+    var keepPress: Bool = false
+    
     var body: some View {
         if isCircle {
         Text(label)
             .font(.title)
-            .foregroundColor(color)
+            .foregroundColor(keepPress ? Color(red: 0.9, green: 0.6, blue: 0.01) : color)
             .frame( maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,  maxHeight: .infinity, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-            .background(backgroundColor)
+            .background(keepPress ? Color(.white) : backgroundColor )
             .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
             .padding(1)
         } else {
             Text(label)
                 .font(.title)
-                .foregroundColor(color)
+                .foregroundColor(keepPress ? Color(red: 0.9, green: 0.6, blue: 0.01) : color)
                 .padding(24)
                 .frame( maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                .background(backgroundColor)
+                .background(keepPress ? Color(.white) : backgroundColor)
                 .clipShape(Capsule())
                 .padding(1)
         }
