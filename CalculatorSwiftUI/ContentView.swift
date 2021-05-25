@@ -33,6 +33,8 @@ struct ContentView: View {
             Text("\(result)")
                 .foregroundColor(.white)
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
+                .frame( maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/,
+                        alignment: .bottomTrailing)
                 .padding()
             VStack{
                 ForEach(0..<contentButtons.count) { posx in
@@ -263,7 +265,7 @@ struct ContentButtonView: View {
                 .font(.title)
                 .foregroundColor(color)
                 .padding(24)
-                .frame( maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                .frame( maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .leading)
                 .background(backgroundColor)
                 .clipShape(Capsule())
                 .padding(1)
